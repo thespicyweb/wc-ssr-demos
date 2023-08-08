@@ -1,0 +1,18 @@
+<script webc:setup>
+  const sharedStyles = await this.readStyles("webc-ssr/shared/styles.css")
+</script>
+
+<template shadowrootmode="open">
+  <script webc:type="js">
+    `<style>${sharedStyles}</style>`
+  </script>
+  <style>
+    :host {
+      color: rebeccapurple;
+    }
+  </style>
+
+  <p><slot name="hello" class="big-font" webc:keep></slot> is working!</p>
+</template>
+
+<span @attributes="({ slot: 'hello'})">Groovy stuff, <span @text="name"></span>. <slot name="hello"></slot></span>
