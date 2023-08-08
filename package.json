@@ -7,6 +7,7 @@
   "scripts": {
     "enhance-ssr": "nodemon enhance-ssr/server.js -e js,css",
     "fast-ssr": "nodemon fast-ssr/server.js",
+    "lit-ssr": "nodemon lit-ssr/server.js -e js,css",
     "webc-ssr": "nodemon webc-ssr/server.js -e js,webc,css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,9 +17,11 @@
     "@11ty/webc": "^0.11.4",
     "@enhance/enhance-style-transform": "^0.1.2",
     "@enhance/ssr": "^3.4.1",
+    "@lit-labs/ssr": "^3.1.5",
     "@microsoft/fast-element": "^2.0.0-beta.24",
     "@microsoft/fast-ssr": "^1.0.0-beta.2",
-    "fastify": "^4.21.0"
+    "fastify": "^4.21.0",
+    "lit": "^2.8.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -20,5 +20,19 @@ export default function SDom({ html, state }) {
     </template>
 
     <span slot="hello">Groovy stuff, <span>${name}</span>. <slot name="hello">...</slot></span>
+
+    <script type="module">
+      class SDomElement extends HTMLElement {
+        static {
+          customElements.define("s-dom", this)
+        }
+
+        connectedCallback() {
+          const para = this.shadowRoot.querySelector("p")
+          para.style.border = "1px dashed gray"
+          para.style.padding = "0.5em"
+        }
+      }
+    </script>
   `
 }

@@ -1,24 +1,11 @@
-import fs from "fs/promises"
-import { WebC } from "@11ty/webc"
+import { RenderResultReadable } from '@lit-labs/ssr/lib/render-result-readable.js';
 
-let page = new WebC();
+import { renderPage } from './page.js';
 
-page.defineComponents("./webc-ssr/components/*.webc")
-page.setInputPath("./webc-ssr/page.webc")
-page.setBundlerMode(true)
-
-page.setHelper("readStyles", async (fileName) => {
-	return (await fs.readFile(fileName)).toString()
-});
-
-let output = await page.compile({
-  data: {
-    hello: "world",
-    easy: [1, 2, 3]
-  }
-})
-
-const result = output.html
+const result = new RenderResultReadable(renderPage({
+  hello: "world",
+  easy: [1, 2, 3]
+})).read()
 
 // Import the framework and instantiate it
 import Fastify from 'fastify'
@@ -31,7 +18,7 @@ fastify.get('/', async function handler (request, reply) {
   reply.type('text/html')
   return `<!doctype html><html>
     <head>
-      <title>WebC SSR Demo</title>
+      <title>Lit SSR Demo</title>
       <meta charset="utf8" />
       <style>
         body {
@@ -41,16 +28,11 @@ fastify.get('/', async function handler (request, reply) {
         h1 {
           font-weight: 900;
         }
-
-        ${output.css.join("")}
       </style>
-      <script type="module">
-        ${output.js.join("")}
-      </script>
     </head>
 
     <body>
-      <h1>Welcome to Fastify & WebC SSR!</h1>
+      <h1>Welcome to Fastify & Lit SSR!</h1>
       <hr />
       ${result}
     </body>
