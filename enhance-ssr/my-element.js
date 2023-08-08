@@ -4,10 +4,13 @@ export default function MyElement({ html, state }) {
   return html`
     <style>
       :host {
-        border: 3px double green;
+        display: block;
+        padding: .5rem 1rem;
+        border: 3px double orange;
       }
+
       h2 {
-        color: red;
+        color: maroon;
       }
     </style>
 

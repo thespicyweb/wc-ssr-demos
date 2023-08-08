@@ -1,0 +1,36 @@
+diff --git a/node_modules/@enhance/ssr/index.mjs b/node_modules/@enhance/ssr/index.mjs
+index 2ee25f5..ca0a179 100644
+--- a/node_modules/@enhance/ssr/index.mjs
++++ b/node_modules/@enhance/ssr/index.mjs
+@@ -12,7 +12,8 @@ export default function Enhancer(options={}) {
+     scriptTransforms=[],
+     styleTransforms=[],
+     uuidFunction=nanoid,
+-    bodyContent=false
++    bodyContent=false,
++    separateContent=false
+   } = options
+   const store = Object.assign({}, initialState)
+ 
+@@ -127,10 +128,17 @@ export default function Enhancer(options={}) {
+       appendNodes(head, Object.values(uniqueLinks))
+     }
+ 
+-    return (bodyContent
+-      ? serializeOuter(body.childNodes[0])
+-      : serialize(doc))
+-          .replace(/__b_\d+/g, '')
++    if (separateContent) {
++      return {
++        head: serialize(head).replace(/__b_\d+/g, ''),
++        body: serialize(body).replace(/__b_\d+/g, '')
++      }
++    } else {
++      return (bodyContent
++        ? serializeOuter(body.childNodes[0])
++        : serialize(doc))
++            .replace(/__b_\d+/g, '')
++    }
+ 
+   }
+ }

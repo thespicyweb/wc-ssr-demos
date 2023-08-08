@@ -19,6 +19,22 @@ export class SDom extends LitElement {
     name: {}
   }
 
+  static clientComponent = html`
+    <script type="module">
+      class SDomElement extends HTMLElement {
+        static {
+          customElements.define("s-dom", this)
+        }
+
+        connectedCallback() {
+          const para = this.shadowRoot.querySelector("p")
+          para.style.border = "1px dashed gray"
+          para.style.padding = "0.5em"
+        }
+      }
+    </script>
+  `
+
   render() {
     return html`
       <p>

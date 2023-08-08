@@ -2,10 +2,12 @@ import { RenderResultReadable } from '@lit-labs/ssr/lib/render-result-readable.j
 
 import { renderPage } from './page.js';
 
-const result = new RenderResultReadable(renderPage({
+const output = new renderPage({
   hello: "world",
   easy: [1, 2, 3]
-})).read()
+})
+
+const result = output.html
 
 // Import the framework and instantiate it
 import Fastify from 'fastify'
@@ -29,6 +31,7 @@ fastify.get('/', async function handler (request, reply) {
           font-weight: 900;
         }
       </style>
+      ${output.js.toString()}
     </head>
 
     <body>

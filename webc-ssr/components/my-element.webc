@@ -1,21 +1,21 @@
 <script webc:setup>
-  function joinedArr(input) { 
-    return input.join(", ")
-  }
+  const join = (input) => input.join(", ")
 </script>
 
 <style webc:scoped="my-element">
   :host {
-    border: 3px double green;
+    display: block;
+    padding: .5rem 1rem;
+    border: 3px double orange;
   }
 
   h2 {
-    color: red;
+    color: maroon;
   }
 </style>
 
 <h2>Hello <span @text="hello"></span>!</h2>
 
-<p>Easy as <span @text="joinedArr(easy)">...</span>. <slot></slot></p>
+<p>Easy as <span @text="join(easy)">...</span>. <slot></slot></p>
 
 <s-dom :@name="hello"><strong slot="hello">Shadow DOM</strong></s-dom>

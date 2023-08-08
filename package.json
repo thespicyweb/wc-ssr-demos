@@ -9,7 +9,8 @@
     "fast-ssr": "nodemon fast-ssr/server.js",
     "lit-ssr": "nodemon lit-ssr/server.js -e js,css",
     "webc-ssr": "nodemon webc-ssr/server.js -e js,webc,css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package"
   },
   "author": "",
   "license": "MIT",
@@ -21,7 +22,8 @@
     "@microsoft/fast-element": "^2.0.0-beta.24",
     "@microsoft/fast-ssr": "^1.0.0-beta.2",
     "fastify": "^4.21.0",
-    "lit": "^2.8.0"
+    "lit": "^2.8.0",
+    "patch-package": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

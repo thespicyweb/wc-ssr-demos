@@ -8,7 +8,8 @@ const html = enhance({
     'my-element': MyElement,
     's-dom': SDom
   },
-  styleTransforms: [styleTransform]
+  styleTransforms: [styleTransform],
+  separateContent: true
 })
 
 const data = {
@@ -19,20 +20,26 @@ const data = {
 const result = html`
   <style>
     my-element {
-      display: block;
-      padding: .5rem;
-      margin-block: 1rem;
       background: lightyellow;
+    }
+
+    main {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-block: 3rem;
     }
   </style>
 
-  <my-element hello=${data.hello} easy=${data.easy}>Boom done.</my-element>
-  <my-element hello="folks" easy=${[4, 5, 6]}>Boom done.</my-element>
+  <main>
+    <my-element hello=${data.hello} easy=${data.easy}>Boom done.</my-element>
+    <my-element hello="folks" easy=${[4, 5, 6]}>Boom done.</my-element>
+  </main>
 `
 
-// TODO: this is janky…would be great if Enhance could provide separate nodes/strings
-const htmlHead = result.match(/<head>((.|\n)*)<\/head>/)[1]
-const htmlBody = result.match(/<body>((.|\n)*)<\/body>/)[1]
+const htmlHead = result.head
+const htmlBody = result.body
 
 // Import the framework and instantiate it
 import Fastify from 'fastify'
@@ -43,7 +50,8 @@ const fastify = Fastify({
 // Declare a route
 fastify.get('/', async function handler (request, reply) {
   reply.type('text/html')
-  return `<!doctype html><html>
+  return `<!doctype html>
+  <html>
     <head>
       <title>Enhance SSR Demo</title>
       <meta charset="utf8" />

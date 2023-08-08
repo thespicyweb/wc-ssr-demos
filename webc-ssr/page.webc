@@ -1,12 +1,18 @@
 <style>
   my-element {
-    display: block;
-    padding: .5rem;
-    margin-block: 1rem;
-    background: lightyellow;
+      background: lightyellow;
+  }
+
+  main {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-block: 3rem;
   }
 </style>
 
-<my-element :@hello="hello" :@easy="easy">Boom done.</my-element>
-
-<my-element :@hello="'folks'" :@easy="[4,5,6]">Boom done.</my-element>
+<main>
+  <my-element :@hello="hello" :@easy="easy">Boom done.</my-element>
+  <my-element :@hello="'folks'" :@easy="[4,5,6]">Boom done.</my-element>
+</main>

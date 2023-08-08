@@ -3,10 +3,13 @@ import { LitElement, html, css } from "lit"
 export class MyElement extends LitElement {
   static styles = css`
     :host {
-      border: 3px double green;
+      display: block;
+      padding: .5rem 1rem;
+      border: 3px double orange;
     }
+
     h2 {
-      color: red;
+      color: maroon;
     }
   `
 
