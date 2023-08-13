@@ -54,6 +54,18 @@ fastify.get('/', async function handler (request, reply) {
       <h1>Welcome to Fastify & WebC SSR!</h1>
       <hr />
       ${result}
+      <script>
+        // Declarative Shadow DOM (DSD) polyfill
+        ;(function attachShadowRoots(root) {
+          root.querySelectorAll("template[shadowrootmode]").forEach(template => {
+            const mode = template.getAttribute("shadowrootmode");
+            const shadowRoot = template.parentNode.attachShadow({ mode });
+            shadowRoot.appendChild(template.content);
+            template.remove();
+            attachShadowRoots(shadowRoot);
+          });
+        })(document);
+      </script>
     </body>
   </html>`
 })
