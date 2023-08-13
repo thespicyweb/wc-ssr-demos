@@ -9,9 +9,9 @@
     "fast-ssr": "nodemon fast-ssr/server.js",
     "lit-ssr": "nodemon lit-ssr/server.js -e js,css",
     "webc-ssr": "nodemon webc-ssr/server.js -e js,webc,css",
-    "enhance-snapshot": "mkdir -p output && http http://localhost:3000 > output/enhance.html",
-    "lit-snapshot": "mkdir -p output && http http://localhost:3000 > output/lit.html",
-    "webc-snapshot": "mkdir -p output && http http://localhost:3000 > output/webc.html",
+    "enhance-snapshot": "mkdir -p docs && http http://localhost:3000 > docs/enhance.html",
+    "lit-snapshot": "mkdir -p docs && http http://localhost:3000 > docs/lit.html",
+    "webc-snapshot": "mkdir -p docs && http http://localhost:3000 > docs/webc.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "patch-package"
   },
