@@ -1,5 +1,3 @@
-import { RenderResultReadable } from '@lit-labs/ssr/lib/render-result-readable.js';
-
 import { renderPage } from './page.js';
 
 const output = new renderPage({
