@@ -1,11 +1,11 @@
-import { renderPage } from './page.js';
+import { renderPage } from "./page.js"
 
-const output = new renderPage({
+const data = {
   hello: "world",
   easy: [1, 2, 3]
-})
+}
 
-const result = output.html
+const [htmlOutput, jsOutput] = await renderPage(data)
 
 // Import the framework and instantiate it
 import Fastify from 'fastify'
@@ -30,13 +30,13 @@ fastify.get('/', async function handler (request, reply) {
           font-weight: 900;
         }
       </style>
-      ${output.js.toString()}
+      ${jsOutput}
     </head>
 
     <body>
       <h1>Welcome to Fastify & Lit SSR!</h1>
       <hr />
-      ${result}
+      ${htmlOutput}
       <script>
         // Declarative Shadow DOM (DSD) polyfill
         ;(function attachShadowRoots(root) {

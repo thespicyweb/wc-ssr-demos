@@ -14,20 +14,20 @@
         }
       </style>
       <style>
-    my-element {
-      background: lightyellow;
-    }
+      my-element {
+        background: lightyellow;
+      }
 
-    main {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-block: 3rem;
-    }
-  </style>
+      main {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-block: 3rem;
+      }
+    </style>
 
-  <style>my-element {
+    <style>my-element {
   display: block;
   padding: .5rem 1rem;
   border: 3px double orange;
@@ -42,7 +42,7 @@ my-element h2 {
       <h1>Welcome to Fastify & Enhance SSR!</h1>
       <hr />
       <main>
-    <my-element hello="world" easy="">
+      <my-element hello="world" easy="">
     
 
     <h2>Hello world!</h2>
@@ -71,7 +71,7 @@ my-element h2 {
     
   </s-dom>
   </my-element>
-    <my-element hello="folks" easy="">
+      <my-element hello="folks" easy="">
     
 
     <h2>Hello folks!</h2>
@@ -100,8 +100,8 @@ my-element h2 {
     
   </s-dom>
   </my-element>
-  </main>
-<script type="module">
+    </main>
+  <script type="module">
       class SDomElement extends HTMLElement {
         static {
           customElements.define("s-dom", this)

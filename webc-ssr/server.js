@@ -1,7 +1,7 @@
 import fs from "fs/promises"
 import { WebC } from "@11ty/webc"
 
-let page = new WebC();
+const page = new WebC()
 
 page.defineComponents("./webc-ssr/components/*.webc")
 page.setInputPath("./webc-ssr/page.webc")
@@ -9,16 +9,14 @@ page.setBundlerMode(true)
 
 page.setHelper("readStyles", async (fileName) => {
 	return (await fs.readFile(fileName)).toString()
-});
-
-let output = await page.compile({
-  data: {
-    hello: "world",
-    easy: [1, 2, 3]
-  }
 })
 
-const result = output.html
+const data = {
+  hello: "world",
+  easy: [1, 2, 3]
+}
+
+const { html, css, js } = await page.compile({ data })
 
 // Import the framework and instantiate it
 import Fastify from 'fastify'
@@ -43,17 +41,17 @@ fastify.get('/', async function handler (request, reply) {
           font-weight: 900;
         }
 
-        ${output.css.join("")}
+        ${css.join("")}
       </style>
       <script type="module">
-        ${output.js.join("")}
+        ${js.join("")}
       </script>
     </head>
 
     <body>
       <h1>Welcome to Fastify & WebC SSR!</h1>
       <hr />
-      ${result}
+      ${html}
       <script>
         // Declarative Shadow DOM (DSD) polyfill
         ;(function attachShadowRoots(root) {
